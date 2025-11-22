@@ -1,0 +1,114 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  margin: 0;
+  padding: 0;
+}
+
+/* ✅ Général */
+section {
+  overflow-x: hidden;
+}
+
+/* ✅ Le header: meilleur alignement */
+@media (max-width: 768px) {
+  header nav {
+    padding: 12px 16px !important;
+  }
+}
+
+/* ✅ Hero: meilleur centrage & padding mobile */
+@media (max-width: 768px) {
+  #accueil {
+    padding: 100px 16px 40px !important;
+  }
+}
+
+/* ✅ Stats du Hero mieux compactées */
+@media (max-width: 480px) {
+  #accueil .stats {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* ✅ À propos : éviter texte trop large */
+@media (max-width: 768px) {
+  #apropos div div {
+    padding: 24px !important;
+  }
+}
+
+/* ✅ Formations: largeur auto + marges */
+@media (max-width: 768px) {
+  #formations > div > div > div {
+    padding: 20px !important;
+  }
+}
+
+/* ✅ Projets : une seule colonne sur mobile */
+@media (max-width: 768px) {
+  #projets > div > div {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* ✅ Expériences : une colonne + texte lisible */
+@media (max-width: 768px) {
+  #expériences > div > div {
+    grid-template-columns: 1fr !important;
+  }
+  #expériences h3, #expériences p {
+    text-align: left !important;
+  }
+}
+
+/* ✅ Contact: déjà bon mais on améliore marges */
+@media (max-width: 768px) {
+  #contact .contact-grid {
+    gap: 24px !important;
+  }
+}
+
+
+/* ========================================
+   🎯 AMÉLIORATIONS GÉNÉRALES
+   ======================================== */
+
+
+/* Amélioration de la sélection de texte */
+::selection {
+  background: rgba(100, 100, 100, 0.3);
+  color: inherit;
+}
+
+::-moz-selection {
+  background: rgba(100, 100, 100, 0.3);
+  color: inherit;
+}
+
+/* Scrollbar personnalisée */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0a0e27;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #00d9ff, #00ffc8);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #00ffc8, #ff6b35);
+}
