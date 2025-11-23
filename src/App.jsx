@@ -22,7 +22,7 @@ function Header() {
   const { theme, toggleTheme } = useContext(ThemeContext);
   const [mobileOpen, setMobileOpen] = useState(false);
 
-   const navItems = [
+  const navItems = [
     { label: 'Accueil', href: 'accueil' },
     { label: 'À propos', href: 'apropos' },
     { label: 'Compétences', href: 'compétences' },
@@ -34,7 +34,7 @@ function Header() {
   const scrollToSection = (sectionId) => {
     const element = document.getElementById(sectionId);
     setMobileOpen(false);
-    
+
     setTimeout(() => {
       if (element) {
         element.scrollIntoView();
@@ -42,7 +42,7 @@ function Header() {
     }, 300);
   };
 
-  const headerBg = theme === 'dark' 
+  const headerBg = theme === 'dark'
     ? 'linear-gradient(135deg, rgba(10, 14, 39, 0.95) 0%, rgba(26, 31, 58, 0.9) 100%)'
     : 'linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(245, 247, 250, 0.9) 100%)';
 
@@ -80,7 +80,7 @@ function Header() {
           gap: '8px',
           cursor: 'pointer'
         }}
-        whileHover={{ scale: 1.05 }}
+          whileHover={{ scale: 1.05 }}
         >
           <Zap size={28} style={{ color: colors.primary }} />
           VANÔ
@@ -95,7 +95,7 @@ function Header() {
           {navItems.map((item, i) => (
             <motion.a
               key={i}
-              href={`#${item.href == "À propos"? "apropos" : item.href.toLowerCase()}`}
+              href={`#${item.href == "À propos" ? "apropos" : item.href.toLowerCase()}`}
               style={{
                 fontSize: '14px',
                 fontWeight: '500',
@@ -790,8 +790,8 @@ function Formations() {
                   </div>
                 </div>
                 <div style={{
-                  background: formation.status === 'En cours' 
-                    ? `linear-gradient(135deg, ${colors.secondary}, #ff8c42)` 
+                  background: formation.status === 'En cours'
+                    ? `linear-gradient(135deg, ${colors.secondary}, #ff8c42)`
                     : `linear-gradient(135deg, ${colors.accent}, #00e5b8)`,
                   color: colors.dark,
                   padding: '8px 16px',
@@ -851,7 +851,7 @@ function Skills() {
     { name: 'Backend', icon: Code, skills: ['Laravel', 'SpringBoot', 'NestJS', 'Flask'] },
     { name: 'Languages', icon: Code, skills: ['JavaScript', 'Java', 'Python', 'C', 'PHP'] },
     { name: 'Database', icon: Database, skills: ['PostgreSQL', 'MySQL', 'SQLite', 'Firebase'] },
-    { name: 'DevOps', icon: Server, skills: ['Docker', 'Git/Github', 'Linux', 'CI/CD', 'Jenkins' ,'Cloud'] }
+    { name: 'DevOps', icon: Server, skills: ['Docker', 'Git/Github', 'Linux', 'CI/CD', 'Jenkins', 'Cloud'] }
   ];
 
   return (
@@ -1133,7 +1133,7 @@ function Experience() {
       startDate: 'Juin 2024',
       endDate: 'Août 2024',
       description: 'J\'ai travaillé en tant que développeur web stagiaire au sein de la DREN. Mon projet principal a consisté à créer une application web complète d\'analyse d\'indicateurs d\'efficacité interne de la classe primaire sur la région Amoron\'i Mania.',
-      skills: ['React.js', 'Node.js','Data Analysis'],
+      skills: ['React.js', 'Node.js', 'Data Analysis'],
       icon: '💼'
     },
     {
@@ -1321,10 +1321,10 @@ function Experience() {
                   }}>
                     🛠️ Compétences utilisées :
                   </p>
-                  <div style={{ 
-                    display: 'flex', 
-                    flexWrap: 'wrap', 
-                    gap: '8px' 
+                  <div style={{
+                    display: 'flex',
+                    flexWrap: 'wrap',
+                    gap: '8px'
                   }}>
                     {exp.skills.map((skill, i) => (
                       <span key={i} style={{
@@ -1400,6 +1400,7 @@ function Contact() {
     setLoading(true);
 
     try {
+
       // Utilisez Formspree ou EmailJS pour envoyer l'email
       const response = await fetch('https://formspree.io/f/mwpoylpl', {
         method: 'POST',
