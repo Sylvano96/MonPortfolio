@@ -1022,7 +1022,7 @@ function Projects() {
             color: theme === 'dark' ? colors.light : colors.dark
           }}
         >
-          Mes <span style={{
+          Quelques <span style={{
             background: `linear-gradient(135deg, ${colors.primary} 0%, ${colors.secondary} 100%)`,
             WebkitBackgroundClip: 'text',
             WebkitTextFillColor: 'transparent',
