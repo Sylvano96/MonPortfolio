@@ -979,7 +979,7 @@ function Projects() {
       name: 'Evo-Blog',
       desc: 'Platforme de blogs avec authentification et CRUD complet.',
       tech: ['Angular', 'SpringBoot', 'PostgreSQL'],
-      link: 'https://github.com/Sylvano96/evo-blog'
+      link: 'https://github.com/Sylvano96/EvoBlog'
     },
     {
       name: 'SpeedService',
