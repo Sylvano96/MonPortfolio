@@ -970,6 +970,12 @@ function Projects() {
 
   const projects = [
     {
+      name: 'ExpenseTracker',
+      desc: 'App web pour faire la gestion de dépense quotidienne avec authentification JWT et utilisation de cookie pour le stockage du clé jwt.',
+      tech: ['Next.js', 'NestJS', 'PostgreSQL', 'Docker'],
+      link: 'https://github.com/Sylvano96/Gestion_depense'
+    },
+    {
       name: 'Evo-Blog',
       desc: 'Platforme de blogs avec authentification et CRUD complet.',
       tech: ['Angular', 'SpringBoot', 'PostgreSQL'],
