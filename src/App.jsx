@@ -847,7 +847,7 @@ function Skills() {
   const { theme } = useTheme();
 
   const skillCategories = [
-    { name: 'Frontend', icon: Globe, skills: ['React JS', 'Angular', 'Tailwind V4', 'CSS/HTML'] },
+    { name: 'Frontend', icon: Globe, skills: ['ReactJS', 'Next.js', 'Angular', 'Tailwind V4', 'CSS/HTML'] },
     { name: 'Backend', icon: Code, skills: ['Laravel', 'SpringBoot', 'NestJS', 'Flask'] },
     { name: 'Languages', icon: Code, skills: ['JavaScript', 'Java', 'Python', 'C', 'PHP'] },
     { name: 'Database', icon: Database, skills: ['PostgreSQL', 'MySQL', 'SQLite', 'Firebase'] },
