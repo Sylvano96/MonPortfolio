@@ -7,11 +7,15 @@ import { motion } from 'framer-motion';
 const AppLazy = lazy(()=> import('./App.jsx'))
 
 const colors = {
-  primary: '#00d9ff',
-  secondary: '#ff6b35',
-  accent: '#00ffc8',
-  dark: '#0a0e27',
-  light: '#ffffff',
+  primary: '#7B66FF',      
+  secondary: '#00E0FF',    
+  accent: '#FFD700',       
+  dark: '#070A1A',         
+  darkCard: '#151A30',     
+  darkHover: '#202845',
+  light: '#FAFAFA',        
+  lightCard: '#FFFFFF',
+  lightHover: '#F0F3F7'
 };
 
 function Spinner1() {
