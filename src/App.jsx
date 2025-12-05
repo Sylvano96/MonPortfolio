@@ -4,17 +4,16 @@ import { Menu, Server, X, Download, ArrowRight, Code, Globe, Database, Mail, Pho
 import { ThemeContext, useTheme } from './Context/useTheme';
 
 
-// Nouvelle palette de couleurs: Cyan/Teal/Orange
 const colors = {
-  primary: '#00d9ff',      // Cyan vif
-  secondary: '#ff6b35',    // Orange chaud
-  accent: '#00ffc8',       // Teal mint
-  dark: '#0a0e27',
-  darkCard: '#1a1f3a',
-  darkHover: '#252d47',
-  light: '#ffffff',
-  lightCard: '#f5f7fa',
-  lightHover: '#eef0f5'
+  primary: '#7B66FF',      
+  secondary: '#00E0FF',    
+  accent: '#FFD700',       
+  dark: '#070A1A',         
+  darkCard: '#151A30',     
+  darkHover: '#202845',
+  light: '#FAFAFA',        
+  lightCard: '#FFFFFF',
+  lightHover: '#F0F3F7'
 };
 
 
