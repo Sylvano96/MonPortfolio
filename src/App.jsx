@@ -982,7 +982,7 @@ function Projects() {
     },
     {
       name: 'VANÔ',
-      desc: 'Portfolio moderne et dynamique mettant en valeur mes projets web. Construit avec React, conteneurisé avec Docker et optimisé avec Nginx pour assurer des performances rapides, une architecture propre et un déploiement fluide.',
+      desc: 'Portfolio moderne et dynamique mettant en valeur mon savoir-faire. Construit avec React, conteneurisé avec Docker et optimisé avec Nginx pour assurer des performances rapides, une architecture propre et un déploiement fluide.',
       tech: ['React', 'Docker', 'Nginx'],
       link: 'https://github.com/Sylvano96/MonPortfolio'
     },
