@@ -981,6 +981,12 @@ function Projects() {
       link: 'https://github.com/Sylvano96/EvoBlog'
     },
     {
+      name: 'VANÔ',
+      desc: 'Portfolio moderne et dynamique mettant en valeur mes projets web. Construit avec React, conteneurisé avec Docker et optimisé avec Nginx pour assurer des performances rapides, une architecture propre et un déploiement fluide.',
+      tech: ['React', 'Docker', 'Nginx'],
+      link: 'https://github.com/Sylvano96/MonPortfolio'
+    },
+    {
       name: 'SpeedService',
       desc: 'Site web qui propose des services numériques avec chat en temps réel et authentification.',
       tech: ['Laravel', 'JavaScript', 'MySQL'],
