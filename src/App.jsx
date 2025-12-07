@@ -968,6 +968,12 @@ function Projects() {
   const { theme } = useTheme();
 
   const projects = [
+     {
+      name: 'VANÔ',
+      desc: 'Portfolio moderne et dynamique mettant en valeur mon savoir-faire.',
+      tech: ['React', 'Docker', 'Nginx'],
+      link: 'https://github.com/Sylvano96/MonPortfolio'
+    },
     {
       name: 'ExpenseTracker',
       desc: 'App web pour faire la gestion de dépense quotidienne avec authentification JWT.',
@@ -979,12 +985,6 @@ function Projects() {
       desc: 'Platforme de blogs avec authentification et CRUD complet.',
       tech: ['Angular', 'SpringBoot', 'PostgreSQL'],
       link: 'https://github.com/Sylvano96/EvoBlog'
-    },
-    {
-      name: 'VANÔ',
-      desc: 'Portfolio moderne et dynamique mettant en valeur mon savoir-faire. Construit avec React, conteneurisé avec Docker et optimisé avec Nginx pour assurer des performances rapides, une architecture propre et un déploiement fluide.',
-      tech: ['React', 'Docker', 'Nginx'],
-      link: 'https://github.com/Sylvano96/MonPortfolio'
     },
     {
       name: 'SpeedService',
