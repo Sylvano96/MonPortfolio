@@ -1,6 +1,6 @@
 import React, { useState, useContext, createContext } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, Server, X, Download, ArrowRight, Code, Globe, Database, Mail, Phone, MapPin, Github, Linkedin, Facebook, Zap, MessageCircle } from 'lucide-react';
+import { Menu, Server, Target, Users, Rocket, Lock, Cog ,X,Folder, Award,  Sparkles , Download, User, ArrowRight, Code, Globe, Database, Mail, Phone, MapPin, Github, Linkedin, Facebook, Zap, MessageCircle, Sun, Moon, Package, Code2, Cloud, Laptop } from 'lucide-react';
 import { ThemeContext, useTheme } from './Context/useTheme';
 
 
@@ -138,12 +138,31 @@ function Header() {
               border: `1px solid ${theme === 'dark' ? colors.primary : colors.primary}20`,
               cursor: 'pointer',
               fontSize: '18px',
-              color: colors.primary
+              color: colors.primary,
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center'
             }}
             whileHover={{ scale: 1.1, background: theme === 'dark' ? colors.darkHover : colors.lightCard }}
             whileTap={{ scale: 0.95 }}
           >
-            {theme === 'dark' ? '☀️' : '🌙'}
+            {theme === 'dark' ? (
+              <motion.div
+                initial={{ rotate: -180, opacity: 0 }}
+                animate={{ rotate: 0, opacity: 1 }}
+                transition={{ duration: 0.3 }}
+              >
+                <Sun size={20} />
+              </motion.div>
+            ) : (
+              <motion.div
+                initial={{ rotate: 180, opacity: 0 }}
+                animate={{ rotate: 0, opacity: 1 }}
+                transition={{ duration: 0.3 }}
+              >
+                <Moon size={20} />
+              </motion.div>
+            )}
           </motion.button>
 
           <button
@@ -199,27 +218,22 @@ function Header() {
           </motion.div>
         )}
       </AnimatePresence>
-
-      <style>{`
-        @media (max-width: 768px) {
-          .desktop-nav {
-            display: none !important;
-          }
-          .mobile-menu-btn {
-            display: block !important;
-          }
-        }
-      `}</style>
     </motion.header>
   );
 }
-
 function Hero() {
   const { theme } = useTheme();
+  const [hoveredStat, setHoveredStat] = useState(null);
 
   const bgGradient = theme === 'dark'
-    ? `linear-gradient(135deg, ${colors.dark} 0%, #0f1a3a 50%, ${colors.dark} 100%)`
+    ? `linear-gradient(135deg, ${colors.dark} 0%, #0f1a3a 50%, #0a0e27 100%)`
     : `linear-gradient(135deg, ${colors.light} 0%, #f0f9ff 50%, ${colors.light} 100%)`;
+
+  const textPrimary = theme === 'dark' ? colors.light : colors.dark;
+  const textSecondary = theme === 'dark' ? '#a8b5d1' : '#64748b';
+  const cardBg = theme === 'dark' ? `${colors.primary}10` : `${colors.primary}15`;
+  const cardBorder = theme === 'dark' ? `${colors.primary}30` : `${colors.primary}20`;
+  const gridBg = theme === 'dark' ? `${colors.primary}05` : `${colors.primary}08`;
 
   return (
     <motion.section
@@ -239,280 +253,385 @@ function Hero() {
       animate={{ opacity: 1 }}
       transition={{ duration: 0.8 }}
     >
-      {/* Background floating elements */}
+      {/* Animated Background Grid */}
+      <div style={{
+        position: 'absolute',
+        inset: 0,
+        backgroundImage: `linear-gradient(0deg, transparent 24%, ${gridBg} 25%, ${gridBg} 26%, transparent 27%, transparent 74%, ${gridBg} 75%, ${gridBg} 76%, transparent 77%, transparent),
+                          linear-gradient(90deg, transparent 24%, ${gridBg} 25%, ${gridBg} 26%, transparent 27%, transparent 74%, ${gridBg} 75%, ${gridBg} 76%, transparent 77%, transparent)`,
+        backgroundSize: '50px 50px',
+        opacity: 0.3
+      }} />
+
+      {/* Floating Orbs */}
+      <motion.div
+        style={{
+          position: 'absolute',
+          width: '300px',
+          height: '300px',
+          background: `radial-gradient(circle, ${colors.primary}30 0%, transparent 70%)`,
+          borderRadius: '50%',
+          top: '10%',
+          left: '5%',
+          pointerEvents: 'none',
+          filter: 'blur(60px)'
+        }}
+        animate={{ y: [0, 50, 0], x: [0, 30, 0] }}
+        transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
+      />
       <motion.div
         style={{
           position: 'absolute',
           width: '250px',
           height: '250px',
-          background: `radial-gradient(circle, ${colors.primary}20 0%, transparent 70%)`,
+          background: `radial-gradient(circle, ${colors.secondary}25 0%, transparent 70%)`,
           borderRadius: '50%',
-          top: '8%',
-          left: '8%',
-          pointerEvents: 'none'
+          bottom: '10%',
+          right: '5%',
+          pointerEvents: 'none',
+          filter: 'blur(60px)'
         }}
-        animate={{ y: [0, 30, 0], x: [0, 20, 0] }}
-        transition={{ duration: 6, repeat: Infinity }}
-      />
-      <motion.div
-        style={{
-          position: 'absolute',
-          width: '200px',
-          height: '200px',
-          background: `radial-gradient(circle, ${colors.secondary}15 0%, transparent 70%)`,
-          borderRadius: '50%',
-          bottom: '15%',
-          right: '8%',
-          pointerEvents: 'none'
-        }}
-        animate={{ y: [0, -30, 0], x: [0, -20, 0] }}
-        transition={{ duration: 8, repeat: Infinity, delay: 1 }}
+        animate={{ y: [0, -50, 0], x: [0, -30, 0] }}
+        transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut', delay: 1 }}
       />
 
-      {/* Content Container */}
-      <div
-        style={{
-          maxWidth: '900px',
-          width: '100%',
-          margin: '0 auto',
-          textAlign: 'center',
-          position: 'relative',
-          zIndex: 1,
-          padding: '0 10px'
-        }}
-      >
-        {/* Welcome Badge */}
-        <motion.div
-          initial={{ y: 20, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ delay: 0.1, duration: 0.8 }}
-          style={{
-            display: 'inline-block',
-            background: `linear-gradient(135deg, ${colors.primary}20, ${colors.secondary}20)`,
-            border: `1px solid ${colors.primary}40`,
-            padding: '10px 22px',
-            borderRadius: '24px',
-            fontSize: 'clamp(12px, 3vw, 14px)',
-            fontWeight: 600,
-            color: colors.primary,
-            marginBottom: '20px'
-          }}
-        >
-          👋 Bienvenue sur mon portfolio
-        </motion.div>
-
-        {/* Profile Icon */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ delay: 0.15, duration: 0.7 }}
-          style={{ marginBottom: '24px' }}
-        >
-          <div
+      {/* Content */}
+      <div className="hero-container" style={{
+        maxWidth: '1000px',
+        width: '100%',
+        margin: '0 auto',
+        position: 'relative',
+        zIndex: 1,
+        display: 'grid',
+        gridTemplateColumns: '1fr 1fr',
+        gap: '60px',
+        alignItems: 'center'
+      }}>
+        {/* Left Content */}
+        <motion.div initial={{ opacity: 0, x: -50 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.8 }}>
+          {/* Badge */}
+          <motion.div
+            initial={{ y: 20, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ delay: 0.1 }}
             style={{
-              width: 'clamp(90px, 18vw, 130px)',
-              height: 'clamp(90px, 18vw, 130px)',
-              margin: '0 auto',
-              borderRadius: '50%',
-              background: `linear-gradient(135deg, ${colors.primary}, ${colors.secondary})`,
-              padding: '4px',
-              boxShadow: `0 0 40px ${colors.primary}40`,
-              display: 'flex',
+              display: 'inline-flex',
               alignItems: 'center',
-              justifyContent: 'center'
+              gap: '8px',
+              background: `linear-gradient(135deg, ${colors.primary}20, ${colors.secondary}20)`,
+              border: `1px solid ${colors.primary}40`,
+              padding: '10px 18px',
+              borderRadius: '50px',
+              fontSize: '13px',
+              fontWeight: 600,
+              color: colors.primary,
+              marginBottom: '24px'
             }}
           >
-            <div
+            <motion.div animate={{ rotate: [0, 360] }} transition={{ duration: 3, repeat: Infinity, ease: 'linear' }}>
+              <Sparkles size={16} />
+            </motion.div>
+            Bienvenue sur mon portfolio
+          </motion.div>
+
+          {/* Main Heading */}
+          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2, duration: 0.8 }}>
+            <h1 style={{
+              fontSize: 'clamp(40px, 6vw, 56px)',
+              fontWeight: '800',
+              lineHeight: '1.1',
+              marginBottom: '16px',
+              color: textPrimary
+            }}>
+              Elias
+            </h1>
+            <motion.h2 style={{
+              fontSize: 'clamp(40px, 6vw, 56px)',
+              fontWeight: '800',
+              marginBottom: '24px',
+              background: `linear-gradient(135deg, ${colors.primary} 0%, ${colors.secondary} 50%, ${colors.accent} 100%)`,
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              backgroundClip: 'text'
+            }}
+              animate={{ backgroundPosition: ['0%', '100%'] }}
+              transition={{ duration: 8, repeat: Infinity }}
+            >
+              Sylvano
+            </motion.h2>
+          </motion.div>
+
+          {/* Subtitle */}
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3, duration: 0.8 }}
+            style={{
+              fontSize: 'clamp(16px, 3vw, 20px)',
+              fontWeight: '600',
+              color: colors.primary,
+              marginBottom: '12px'
+            }}
+          >
+            Full-Stack Developer & DevOps
+          </motion.p>
+
+          {/* Description */}
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.4, duration: 0.8 }}
+            style={{
+              fontSize: 'clamp(13px, 2.5vw, 15px)',
+              lineHeight: '1.6',
+              color: textSecondary,
+              marginBottom: '32px',
+              maxWidth: '450px'
+            }}
+          >
+            Créateur de solutions web modernes et d'infrastructures cloud scalables. Passionné par la performance, l'innovation et l'excellence technique.
+          </motion.p>
+
+          {/* CTA Buttons */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.5, duration: 0.8 }}
+            style={{
+              display: 'flex',
+              gap: '16px',
+              flexWrap: 'wrap',
+              marginBottom: '48px'
+            }}
+          >
+            <motion.a
+              whileHover={{ scale: 1.05, y: -4 }}
+              whileTap={{ scale: 0.95 }}
+              style={{
+                background: `linear-gradient(135deg, ${colors.primary}, ${colors.accent})`,
+                color: colors.dark,
+                padding: '12px 24px',
+                borderRadius: '10px',
+                fontWeight: '700',
+                fontSize: 'clamp(13px, 2.5vw, 15px)',
+                textDecoration: 'none',
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '10px',
+                boxShadow: `0 10px 30px ${colors.primary}40`,
+                cursor: 'pointer'
+              }}
+              href="/assets/Elias_Sylvano_CV.pdf"
+              download
+            >
+              <Download size={18} />
+              Télécharger CV
+            </motion.a>
+
+            <motion.a
+              href="#apropos"
+              whileHover={{ scale: 1.05, y: -4, borderColor: colors.primary, boxShadow: `0 10px 30px ${colors.primary}20` }}
+              whileTap={{ scale: 0.95 }}
+              style={{
+                padding: '12px 24px',
+                borderRadius: '10px',
+                border: `2px solid ${colors.primary}40`,
+                color: colors.primary,
+                background: 'transparent',
+                fontWeight: '700',
+                fontSize: 'clamp(13px, 2.5vw, 15px)',
+                textDecoration: 'none',
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '10px',
+                cursor: 'pointer',
+                transition: 'all 0.3s'
+              }}
+            >
+              Découvrir plus
+              <motion.div animate={{ x: [0, 5, 0] }} transition={{ duration: 1.5, repeat: Infinity }}>
+                <ArrowRight size={18} />
+              </motion.div>
+            </motion.a>
+          </motion.div>
+
+          {/* Stats - Will move on mobile */}
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.6, duration: 0.8 }}
+            className="stats-section"
+            style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(3, 1fr)',
+              gap: '16px',
+              paddingTop: '32px',
+              borderTop: `1px solid ${colors.primary}20`,
+              marginBottom: '0'
+            }}
+          >
+            {[
+              { icon: Folder, label: 'Projets', value: '10+' },
+              { icon: Code2, label: 'Technologies', value: '15+' },
+              { icon: Award, label: 'Expérience', value: '3 ans' }
+            ].map((stat, i) => {
+              const StatIcon = stat.icon;
+              return (
+                <motion.div
+                  key={i}
+                  onMouseEnter={() => setHoveredStat(i)}
+                  onMouseLeave={() => setHoveredStat(null)}
+                  whileHover={{ y: -8, scale: 1.05 }}
+                  style={{
+                    padding: '12px',
+                    borderRadius: '10px',
+                    background: cardBg,
+                    border: `1px solid ${cardBorder}`,
+                    textAlign: 'center',
+                    transition: 'all 0.3s'
+                  }}
+                >
+                  <motion.div
+                    style={{
+                      marginBottom: '8px',
+                      display: 'flex',
+                      justifyContent: 'center'
+                    }}
+                    animate={{ rotate: hoveredStat === i ? [0, 10, 0] : 0 }}
+                    transition={{ duration: 0.4 }}
+                  >
+                    <StatIcon size={22} color={colors.primary} />
+                  </motion.div>
+                  <motion.div
+                    style={{
+                      fontSize: 'clamp(16px, 3vw, 20px)',
+                      fontWeight: '800',
+                      background: `linear-gradient(135deg, ${colors.primary}, ${colors.secondary})`,
+                      WebkitBackgroundClip: 'text',
+                      WebkitTextFillColor: 'transparent',
+                      backgroundClip: 'text',
+                      marginBottom: '4px'
+                    }}
+                  >
+                    {stat.value}
+                  </motion.div>
+                  <div style={{ fontSize: '11px', fontWeight: '600', color: textSecondary }}>
+                    {stat.label}
+                  </div>
+                </motion.div>
+              );
+            })}
+          </motion.div>
+        </motion.div>
+
+        {/* Right - Profile Image */}
+        <motion.div
+          initial={{ opacity: 0, x: 50, scale: 0.9 }}
+          animate={{ opacity: 1, x: 0, scale: 1 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+          className="profile-image-container"
+          style={{
+            position: 'relative',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            transform: 'translateY(-40px)',
+            order: 2
+          }}
+        >
+          {/* Glowing Background */}
+          <motion.div
+            style={{
+              position: 'absolute',
+              width: '300px',
+              height: '300px',
+              background: `radial-gradient(circle, ${colors.primary}30 0%, transparent 70%)`,
+              borderRadius: '50%',
+              filter: 'blur(40px)',
+              zIndex: -1
+            }}
+            animate={{ scale: [1, 1.1, 1] }}
+            transition={{ duration: 4, repeat: Infinity }}
+          />
+
+          {/* Image Container */}
+          <motion.div
+            style={{
+              position: 'relative',
+              width: 'clamp(200px, 90vw, 280px)',
+              height: 'clamp(200px, 90vw, 280px)',
+              borderRadius: '20px',
+              background: `linear-gradient(135deg, ${colors.primary}40, ${colors.secondary}40)`,
+              padding: '4px',
+              boxShadow: `0 25px 50px ${colors.primary}30, inset 0 0 30px ${colors.primary}20`,
+              overflow: 'hidden'
+            }}
+            animate={{ 
+              boxShadow: [
+                `0 25px 50px ${colors.primary}30, inset 0 0 30px ${colors.primary}20`,
+                `0 25px 60px ${colors.primary}40, inset 0 0 40px ${colors.primary}30`,
+                `0 25px 50px ${colors.primary}30, inset 0 0 30px ${colors.primary}20`
+              ]
+            }}
+            transition={{ duration: 4, repeat: Infinity }}
+          >
+            <motion.img
+              src="/assets/IMG_20250513_192957.jpg"
+              alt="Elias Sylvano"
               style={{
                 width: '100%',
                 height: '100%',
-                borderRadius: '50%',
-                background: theme === 'dark' ? colors.dark : colors.light,
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                fontSize: 'clamp(36px, 10vw, 48px)'
+                objectFit: 'cover',
+                borderRadius: '16px'
               }}
-            >
-              👨‍💻
-            </div>
-          </div>
-        </motion.div>
+              animate={{ scale: [1, 1.05, 1] }}
+              transition={{ duration: 6, repeat: Infinity }}
+            />
 
-        {/* Name */}
-        <motion.h1
-          initial={{ y: 20, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ delay: 0.25, duration: 0.8 }}
-          style={{
-            fontSize: 'clamp(32px, 8vw, 72px)',
-            fontWeight: 'bold',
-            color: theme === 'dark' ? colors.light : colors.dark,
-            marginBottom: '12px',
-            lineHeight: 1.1
-          }}
-        >
-          Elias <span
+            {/* Overlay Gradient */}
+            <div style={{
+              position: 'absolute',
+              inset: 0,
+              background: `linear-gradient(135deg, ${colors.primary}20 0%, transparent 50%, ${colors.secondary}20 100%)`,
+              pointerEvents: 'none',
+              borderRadius: '16px'
+            }} />
+          </motion.div>
+
+          {/* Floating Code Icon */}
+          <motion.div
             style={{
-              background: `linear-gradient(135deg, ${colors.primary}, ${colors.secondary})`,
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent'
-            }}
-          >
-            Sylvano
-          </span>
-        </motion.h1>
-
-        {/* Subtitle */}
-        <motion.p
-          initial={{ y: 20, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ delay: 0.35, duration: 0.8 }}
-          style={{
-            fontSize: 'clamp(15px, 3.5vw, 22px)',
-            color: theme === 'dark' ? '#a8b5d1' : '#64748b',
-            fontWeight: '600',
-            marginBottom: '20px'
-          }}
-        >
-          Full-Stack Developer & DevOps
-        </motion.p>
-
-        {/* Small Description */}
-        <motion.p
-          initial={{ opacity: 0, y: 15 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.42, duration: 0.8 }}
-          style={{
-            maxWidth: '550px',
-            margin: '0 auto 30px',
-            fontSize: 'clamp(13px, 3vw, 16px)',
-            lineHeight: '1.6',
-            color: theme === 'dark' ? '#cbd5e1' : '#475569'
-          }}
-        >
-          Bienvenue sur mon portfolio ! Je suis un développeur full-stack et DevOps passionné,
-          spécialisé dans les applications web modernes et le cloud.
-        </motion.p>
-
-        {/* Stats */}
-        <motion.div
-          className="stats"
-          initial={{ opacity: 0, y: 15 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.5, duration: 0.8 }}
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(130px, 1fr))',
-            gap: '14px',
-            maxWidth: '450px',
-            margin: '0 auto 30px'
-          }}
-        >
-          {[
-            { icon: '📁', label: 'Projets', value: '10+' },
-            { icon: '⚡', label: 'Technologies', value: '15+' },
-            { icon: '🎯', label: 'Expérience', value: '3 ans' }
-          ].map((stat, i) => (
-            <div
-              key={i}
-              style={{
-                padding: '14px',
-                borderRadius: '10px',
-                background: theme === 'dark' ? `${colors.primary}10` : `${colors.primary}15`,
-                border: `1px solid ${colors.primary}30`,
-                textAlign: 'center'
-              }}
-            >
-              <div style={{ fontSize: '20px', marginBottom: '6px' }}>{stat.icon}</div>
-              <div
-                style={{
-                  fontSize: 'clamp(16px, 4vw, 20px)',
-                  fontWeight: 'bold',
-                  background: `linear-gradient(135deg, ${colors.primary}, ${colors.secondary})`,
-                  WebkitBackgroundClip: 'text',
-                  WebkitTextFillColor: 'transparent',
-                  marginBottom: '4px'
-                }}
-              >
-                {stat.value}
-              </div>
-              <div style={{ fontSize: '11px', fontWeight: 600, color: theme === 'dark' ? '#cbd5e1' : '#64748b' }}>
-                {stat.label}
-              </div>
-            </div>
-          ))}
-        </motion.div>
-
-        {/* CTA Buttons */}
-        <motion.div
-          initial={{ opacity: 0, y: 15 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.55, duration: 0.8 }}
-          style={{
-            display: 'flex',
-            flexDirection: 'column',
-            gap: '12px',
-            justifyContent: 'center',
-            alignItems: 'center'
-          }}
-        >
-          <motion.a
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            style={{
-              background: `linear-gradient(135deg, ${colors.primary}, ${colors.accent})`,
-              color: colors.dark,
-              padding: '12px 28px',
-              borderRadius: '10px',
-              fontWeight: '700',
-              fontSize: 'clamp(14px, 4vw, 16px)',
-              textDecoration: 'none'
-            }}
-            href="/assets/Elias_Sylvano_CV.pdf"
-            download
-          >
-            📄 Télécharger CV
-          </motion.a>
-
-          <motion.a
-            href="#apropos"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            style={{
-              padding: '12px 28px',
-              borderRadius: '10px',
+              position: 'absolute',
+              bottom: '20px',
+              right: '-40px',
+              background: theme === 'dark' ? colors.dark : colors.light,
               border: `2px solid ${colors.primary}`,
-              color: colors.primary,
-              background: 'transparent',
-              fontWeight: '700',
-              fontSize: 'clamp(14px, 4vw, 16px)',
-              textDecoration: 'none'
+              borderRadius: '16px',
+              padding: '12px',
+              boxShadow: `0 10px 30px ${colors.primary}30`
             }}
+            animate={{ y: [0, -20, 0], rotate: [0, 10, 0] }}
+            transition={{ duration: 4, repeat: Infinity, delay: 0.5 }}
           >
-            En savoir plus →
-          </motion.a>
+            <Code2 size={24} color={colors.primary} />
+          </motion.div>
         </motion.div>
       </div>
-
-      {/* ✅ Mobile responsiveness CSS */}
-      <style>{`
-        @media (max-width: 768px) {
-          #accueil {
-            padding-top: 110px !important;
-          }
-          #accueil .stats {
-            grid-template-columns: 1fr !important;
-            max-width: 260px !important;
-          }
-        }
-      `}</style>
     </motion.section>
   );
 }
 
 function About() {
   const { theme } = useTheme();
+
+  const values = [
+    { icon: Zap, title: 'Performance', desc: 'Code optimisé et infrastructures rapides' },
+    { icon: Target, title: 'Qualité', desc: 'Excellence dans chaque détail' },
+    { icon: Users, title: 'Collaboration', desc: 'Travail en équipe efficace' },
+    { icon: Rocket, title: 'Innovation', desc: 'Toujours explorer le nouveau' },
+    { icon: Lock, title: 'Sécurité', desc: 'Données et infrastrutures sécurisées' },
+    { icon: Cog, title: 'Automatisation', desc: 'Processus optimisés et scalables' }
+  ];
 
   return (
     <motion.section
@@ -545,6 +664,84 @@ function About() {
             backgroundClip: 'text'
           }}>Moi</span>
         </motion.h2>
+
+        {/* Profile Image - Only shown on mobile */}
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.4, duration: 0.8 }}
+            className="about-profile-image"
+            style={{
+              display: 'none',
+              marginTop: '48px',
+              paddingTop: '48px',
+              borderTop: `1px solid ${colors.primary}20`,
+              position: 'relative',
+              justifyContent: 'center',
+              alignItems: 'center'
+            }}
+          >
+            <motion.div
+              style={{
+                position: 'relative',
+                width: 'clamp(200px, 90vw, 280px)',
+                height: 'clamp(200px, 90vw, 280px)',
+                borderRadius: '20px',
+                background: `linear-gradient(135deg, ${colors.primary}40, ${colors.secondary}40)`,
+                padding: '4px',
+                boxShadow: `0 25px 50px ${colors.primary}30, inset 0 0 30px ${colors.primary}20`,
+                overflow: 'hidden',
+                margin: '0 auto'
+              }}
+              animate={{ 
+                boxShadow: [
+                  `0 25px 50px ${colors.primary}30, inset 0 0 30px ${colors.primary}20`,
+                  `0 25px 60px ${colors.primary}40, inset 0 0 40px ${colors.primary}30`,
+                  `0 25px 50px ${colors.primary}30, inset 0 0 30px ${colors.primary}20`
+                ]
+              }}
+              transition={{ duration: 4, repeat: Infinity }}
+            >
+              <motion.img
+                src="/assets/IMG_20250513_192957.jpg"
+                alt="Elias Sylvano"
+                style={{
+                  width: '100%',
+                  height: '100%',
+                  objectFit: 'cover',
+                  borderRadius: '16px'
+                }}
+                animate={{ scale: [1, 1.05, 1] }}
+                transition={{ duration: 6, repeat: Infinity }}
+              />
+
+              <div style={{
+                position: 'absolute',
+                inset: 0,
+                background: `linear-gradient(135deg, ${colors.primary}20 0%, transparent 50%, ${colors.secondary}20 100%)`,
+                pointerEvents: 'none',
+                borderRadius: '16px'
+              }} />
+            </motion.div>
+
+            {/* Floating Code Icon */}
+            <motion.div
+              style={{
+                position: 'absolute',
+                bottom: '20px',
+                right: '20px',
+                background: theme === 'dark' ? colors.dark : colors.light,
+                border: `2px solid ${colors.primary}`,
+                borderRadius: '16px',
+                padding: '12px',
+                boxShadow: `0 10px 30px ${colors.primary}30`
+              }}
+              animate={{ y: [0, -20, 0], rotate: [0, 10, 0] }}
+              transition={{ duration: 4, repeat: Infinity, delay: 0.5 }}
+            >
+              <Code2 size={24} color={colors.primary} />
+            </motion.div>
+          </motion.div>
 
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -583,13 +780,6 @@ function About() {
             Chaque projet est une opportunité d'apprendre quelque chose de nouveau et de repousser mes limites techniques. Je crois fermement que la collaboration, l'automatisation et l'apprentissage continu sont les clés du succès dans ce domaine en constante évolution.
           </p>
 
-          {/* <p style={{
-            fontSize: '18px',
-            color: theme === 'dark' ? '#cbd5e1' : '#475569'
-          }}>
-            Lorsque je ne code pas, j'aime explorer les dernières tendances en développement web et DevOps, contribuer à des projets open-source, et partager mes connaissances avec la communauté des développeurs. Mon objectif est de créer des solutions numériques qui allient performance, qualité et innovation.
-          </p> */}
-
           {/* Section Valeurs */}
           <div style={{
             marginTop: '32px',
@@ -600,8 +790,17 @@ function About() {
               fontSize: '20px',
               fontWeight: 'bold',
               marginBottom: '20px',
-              color: theme === 'dark' ? colors.light : colors.dark
+              color: theme === 'dark' ? colors.light : colors.dark,
+              display: 'flex',
+              alignItems: 'center',
+              gap: '10px'
             }}>
+              <motion.div
+                animate={{ rotate: [0, 360] }}
+                transition={{ duration: 8, repeat: Infinity, ease: 'linear' }}
+              >
+                <Cog size={24} color={colors.primary} />
+              </motion.div>
               Mes Valeurs
             </h3>
             <div style={{
@@ -609,55 +808,49 @@ function About() {
               gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
               gap: '20px'
             }}>
-              {[
-                { icon: '⚡', title: 'Performance', desc: 'Code optimisé et infrastructures rapides' },
-                { icon: '🎯', title: 'Qualité', desc: 'Excellence dans chaque détail' },
-                { icon: '🤝', title: 'Collaboration', desc: 'Travail en équipe efficace' },
-                { icon: '🚀', title: 'Innovation', desc: 'Toujours explorer le nouveau' },
-                { icon: '🔒', title: 'Sécurité', desc: 'Données et infrastrutures sécurisées' },
-                { icon: '⚙️', title: 'Automatisation', desc: 'Processus optimisés et scalables' }
-              ].map((value, i) => (
-                <motion.div
-                  key={i}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ delay: i * 0.1, duration: 0.6 }}
-                  whileHover={{ y: -5 }}
-                  style={{
-                    padding: '16px',
-                    borderRadius: '10px',
-                    background: theme === 'dark' ? `${colors.primary}10` : `${colors.primary}15`,
-                    border: `1px solid ${colors.primary}20`,
-                    textAlign: 'center',
-                    cursor: 'pointer',
-                    transition: 'all 0.3s'
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.borderColor = colors.primary;
-                    e.currentTarget.style.boxShadow = `0 10px 30px ${colors.primary}20`;
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.borderColor = `${colors.primary}20`;
-                    e.currentTarget.style.boxShadow = 'none';
-                  }}
-                >
-                  <div style={{ fontSize: '24px', marginBottom: '8px' }}>{value.icon}</div>
-                  <h4 style={{
-                    fontSize: '14px',
-                    fontWeight: '700',
-                    color: theme === 'dark' ? colors.light : colors.dark,
-                    marginBottom: '4px'
-                  }}>
-                    {value.title}
-                  </h4>
-                  <p style={{
-                    fontSize: '12px',
-                    color: theme === 'dark' ? '#cbd5e1' : '#64748b'
-                  }}>
-                    {value.desc}
-                  </p>
-                </motion.div>
-              ))}
+              {values.map((value, i) => {
+                const IconComponent = value.icon;
+                return (
+                  <motion.div
+                    key={i}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ delay: i * 0.1, duration: 0.6 }}
+                    whileHover={{ y: -5, borderColor: colors.primary, boxShadow: `0 10px 30px ${colors.primary}20` }}
+                    style={{
+                      padding: '16px',
+                      borderRadius: '10px',
+                      background: theme === 'dark' ? `${colors.primary}10` : `${colors.primary}15`,
+                      border: `1px solid ${colors.primary}20`,
+                      textAlign: 'center',
+                      cursor: 'pointer',
+                      transition: 'all 0.3s'
+                    }}
+                  >
+                    <motion.div
+                      style={{ marginBottom: '8px', display: 'flex', justifyContent: 'center' }}
+                      animate={{ y: [0, -8, 0] }}
+                      transition={{ duration: 2, repeat: Infinity, delay: i * 0.2 }}
+                    >
+                      <IconComponent size={28} color={colors.primary} />
+                    </motion.div>
+                    <h4 style={{
+                      fontSize: '14px',
+                      fontWeight: '700',
+                      color: theme === 'dark' ? colors.light : colors.dark,
+                      marginBottom: '4px'
+                    }}>
+                      {value.title}
+                    </h4>
+                    <p style={{
+                      fontSize: '12px',
+                      color: theme === 'dark' ? '#cbd5e1' : '#64748b'
+                    }}>
+                      {value.desc}
+                    </p>
+                  </motion.div>
+                );
+              })}
             </div>
           </div>
         </motion.div>
@@ -848,7 +1041,7 @@ function Skills() {
   const skillCategories = [
     { name: 'Frontend', icon: Globe, skills: ['ReactJS', 'Next.js', 'Angular', 'Tailwind V4', 'CSS/HTML'] },
     { name: 'Backend', icon: Code, skills: ['Laravel', 'SpringBoot', 'NestJS', 'Flask'] },
-    { name: 'Languages', icon: Code, skills: ['JavaScript', 'Java', 'Python', 'C', 'PHP'] },
+    { name: 'Languages', icon: Code2, skills: ['JavaScript', 'Java', 'Python', 'C', 'PHP'] },
     { name: 'Database', icon: Database, skills: ['PostgreSQL', 'MySQL', 'SQLite', 'Firebase'] },
     { name: 'DevOps', icon: Server, skills: ['Docker', 'Git/Github', 'Linux', 'CI/CD', 'Jenkins', 'Cloud'] }
   ];
@@ -1145,7 +1338,7 @@ function Experience() {
       endDate: 'Août 2024',
       description: 'J\'ai travaillé en tant que développeur web stagiaire au sein de la DREN. Mon projet principal a consisté à créer une application web complète d\'analyse d\'indicateurs d\'efficacité interne de la classe primaire sur la région Amoron\'i Mania.',
       skills: ['React.js', 'Node.js', 'Data Analysis'],
-      icon: '💼'
+      icon: <Laptop/>
     },
     {
       id: 2,
@@ -1156,7 +1349,7 @@ function Experience() {
       endDate: 'Septembre 2025',
       description: 'Développement d\'une plateforme web complète de gestion d\'événements avec React.js, Nest.js et PostgreSQL. Conception et implémentation de l\'architecture three-tier avec API RESTful et communications temps réel via WebSocket. J\'ai eu la chance de collaborer avec un groupe de développeurs et désigné en tant que responsable du développement du module administrateur : tableau de bord avec statistiques, gestion des organisateurs et forfaits, système de notifications en temps réel, et messagerie intégrée avec Nodemailer. Déploiement en production sur serveur LWS.',
       skills: ['React.js', 'Nest.js', 'PostgreSQL', 'TypeScript', 'WebSocket', 'Socket.io', 'TypeORM', 'JWT', 'OAuth Google', 'Nodemailer', 'Git/Github', 'Figma', 'Agile SCRUM', 'RESTful API', 'LWS', 'Apache'],
-      icon: '💼'
+      icon: <Cloud/>
     }
   ];
 
@@ -1360,16 +1553,6 @@ function Experience() {
           ))}
         </div>
       </div>
-
-      <style>{`
-        @media (max-width: 768px) {
-          /* Padding réduit sur mobile */
-        }
-        
-        @media (max-width: 480px) {
-          /* Ajustements pour très petits écrans */
-        }
-      `}</style>
     </section>
   );
 }
@@ -1823,14 +2006,6 @@ function Contact() {
             </form>
           </motion.div>
         </div>
-
-        <style>{`
-          @media (max-width: 768px) {
-            .contact-grid {
-              grid-template-columns: 1fr !important;
-            }
-          }
-        `}</style>
       </div>
     </section>
   );

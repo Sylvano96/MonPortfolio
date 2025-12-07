@@ -78,7 +78,59 @@ section {
   }
 }
 
+@media (max-width: 768px) {
+.hero-container {
+  grid-template-columns: 1fr !important;
+  gap: 40px !important;
+  grid-template-rows: auto auto auto;
+}
 
+.profile-image-container {
+  display: none !important;
+}
+
+.stats-section {
+  order: 2;
+  border-top: none !important;
+  padding-top: 0 !important;
+  grid-column: 1 / -1;
+}
+}
+
+@media (max-width: 480px) {
+.stats-section {
+  grid-template-columns: repeat(auto-fit, minmax(80px, 1fr)) !important;
+}
+}
+
+@media (max-width: 768px) {
+  .desktop-nav {
+    display: none !important;
+  }
+  .mobile-menu-btn {
+    display: block !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .contact-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+@media (max-width: 768px) {
+  /* Padding réduit sur mobile */
+}
+
+@media (max-width: 480px) {
+  /* Ajustements pour très petits écrans */
+}
+
+@media (max-width: 768px) {
+  .about-profile-image {
+    display: flex !important;
+  }
+}
 /* ========================================
    🎯 AMÉLIORATIONS GÉNÉRALES
    ======================================== */
