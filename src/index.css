@@ -131,9 +131,6 @@ section {
     display: flex !important;
   }
 }
-/* ========================================
-   🎯 AMÉLIORATIONS GÉNÉRALES
-   ======================================== */
 
 
 /* Amélioration de la sélection de texte */
@@ -157,10 +154,10 @@ section {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, #00d9ff, #00ffc8);
+  background: linear-gradient(180deg,#00ffc8,#00a8cc,);
   border-radius: 10px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(180deg, #00ffc8, #ff6b35);
+  background: linear-gradient(180deg, #00a8cc, #0080d0);
 }
