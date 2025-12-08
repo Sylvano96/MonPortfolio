@@ -1,6 +1,6 @@
 import React, { useState, useContext, createContext } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, Server, Target, Users, Rocket, Lock, Cog ,X,Folder, Award,  Sparkles , Download, User, ArrowRight, Code, Globe, Database, Mail, Phone, MapPin, Github, Linkedin, Facebook, Zap, MessageCircle, Sun, Moon, Package, Code2, Cloud, Laptop } from 'lucide-react';
+import { Menu, Server, Target, Users, Rocket, Lock, Cog ,X,Folder, Award,  Sparkles , Download, User, ArrowRight, Code, Globe, Database, Mail, Phone, MapPin, Github, Linkedin, Facebook, Zap, MessageCircle, Sun, Moon, Package, Code2, Cloud, Laptop, GraduationCap, BookOpen, Calendar, Briefcase, Wrench, Send, CheckCircle } from 'lucide-react';
 import { ThemeContext, useTheme } from './Context/useTheme';
 
 
@@ -870,7 +870,7 @@ function Formations() {
       annee: '2024-2025',
       status: 'Validée',
       description: 'Formation complète en développement web full-stack avec focus sur les technologies modernes.',
-      icon: '🎓'
+      icon: () => <GraduationCap size={32} color={colors.primary} />
     },
     {
       id: 2,
@@ -879,7 +879,7 @@ function Formations() {
       annee: '2023-2024',
       status: 'Validée',
       description: 'Approfondissement des compétences en développement web et gestion de projets informatiques.',
-      icon: '📚'
+      icon: () => <BookOpen size={32} color={colors.primary} />
     },
     {
       id: 3,
@@ -888,9 +888,13 @@ function Formations() {
       annee: '2022-2023',
       status: 'Validée',
       description: 'Introduction aux fondamentaux du développement web et des langages de programmation.',
-      icon: '📖'
+      icon: () => <Award size={32} color={colors.primary} />
     }
   ];
+
+  const textPrimary = theme === 'dark' ? colors.light : colors.dark;
+  const textSecondary = theme === 'dark' ? '#cbd5e1' : '#64748b';
+  const bgCard = theme === 'dark' ? colors.darkCard : colors.lightCard;
 
   return (
     <section
@@ -906,11 +910,11 @@ function Formations() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           style={{
-            fontSize: '42px',
+            fontSize: 'clamp(32px, 6vw, 42px)',
             fontWeight: 'bold',
             marginBottom: '48px',
             textAlign: 'center',
-            color: theme === 'dark' ? colors.light : colors.dark
+            color: textPrimary
           }}
         >
           Mes <span style={{
@@ -926,110 +930,133 @@ function Formations() {
           flexDirection: 'column',
           gap: '24px'
         }}>
-          {formations.map((formation, i) => (
-            <motion.div
-              key={formation.id}
-              initial={{ opacity: 0, x: -50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ delay: i * 0.1, duration: 0.8 }}
-              whileHover={{ x: 10 }}
-              style={{
-                padding: '32px',
-                borderRadius: '14px',
-                background: theme === 'dark' ? colors.darkCard : colors.lightCard,
-                boxShadow: `0 10px 30px ${theme === 'dark' ? 'rgba(0, 0, 0, 0.3)' : 'rgba(0, 0, 0, 0.1)'}`,
-                border: `1px solid ${colors.primary}20`,
-                borderLeft: `4px solid ${colors.primary}`,
-                transition: 'all 0.3s',
-                cursor: 'pointer'
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.borderColor = colors.primary;
-                e.currentTarget.style.boxShadow = `0 20px 50px ${colors.primary}30`;
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.borderColor = `${colors.primary}20`;
-                e.currentTarget.style.boxShadow = `0 10px 30px ${theme === 'dark' ? 'rgba(0, 0, 0, 0.3)' : 'rgba(0, 0, 0, 0.1)'}`;
-              }}
-            >
-              <div style={{
-                display: 'flex',
-                justifyContent: 'space-between',
-                alignItems: 'flex-start',
-                marginBottom: '16px',
-                gap: '16px',
-                flexWrap: 'wrap'
-              }}>
-                <div style={{ display: 'flex', gap: '16px', alignItems: 'flex-start' }}>
-                  <div style={{ fontSize: '32px' }}>{formation.icon}</div>
-                  <div>
-                    <h3 style={{
-                      fontSize: '18px',
-                      fontWeight: 'bold',
-                      color: theme === 'dark' ? colors.light : colors.dark,
-                      marginBottom: '4px'
-                    }}>
-                      {formation.diplome}
-                    </h3>
-                    <p style={{
-                      fontSize: '14px',
-                      color: colors.primary,
-                      fontWeight: '600',
-                      marginBottom: '4px'
-                    }}>
-                      {formation.ecole}
-                    </p>
-                  </div>
-                </div>
+          {formations.map((formation, i) => {
+            return (
+              <motion.div
+                key={formation.id}
+                initial={{ opacity: 0, x: -50 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ delay: i * 0.1, duration: 0.8 }}
+                whileHover={{ x: 10, y: -4 }}
+                style={{
+                  padding: 'clamp(20px, 5vw, 32px)',
+                  borderRadius: '14px',
+                  background: bgCard,
+                  boxShadow: `0 10px 30px ${theme === 'dark' ? 'rgba(0, 0, 0, 0.3)' : 'rgba(0, 0, 0, 0.1)'}`,
+                  border: `1px solid ${colors.primary}20`,
+                  borderLeft: `4px solid ${colors.primary}`,
+                  transition: 'all 0.3s',
+                  cursor: 'pointer'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.borderColor = colors.primary;
+                  e.currentTarget.style.boxShadow = `0 20px 50px ${colors.primary}30`;
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.borderColor = `${colors.primary}20`;
+                  e.currentTarget.style.boxShadow = `0 10px 30px ${theme === 'dark' ? 'rgba(0, 0, 0, 0.3)' : 'rgba(0, 0, 0, 0.1)'}`;
+                }}
+              >
                 <div style={{
-                  background: formation.status === 'En cours'
-                    ? `linear-gradient(135deg, ${colors.secondary}, #ff8c42)`
-                    : `linear-gradient(135deg, ${colors.accent}, #00e5b8)`,
-                  color: colors.dark,
-                  padding: '8px 16px',
-                  borderRadius: '20px',
-                  fontSize: '12px',
-                  fontWeight: '700',
-                  whiteSpace: 'nowrap'
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                  alignItems: 'flex-start',
+                  marginBottom: '16px',
+                  gap: '16px',
+                  flexWrap: 'wrap'
                 }}>
-                  {formation.status}
+                  <div style={{ display: 'flex', gap: '16px', alignItems: 'flex-start', flex: 1 }}>
+                    <motion.div
+                      style={{ flexShrink: 0 }}
+                      animate={{ rotate: [0, 10, 0] }}
+                      transition={{ duration: 4, repeat: Infinity }}
+                    >
+                      {formation.icon()}
+                    </motion.div>
+                    <div style={{ flex: 1 }}>
+                      <h3 style={{
+                        fontSize: 'clamp(16px, 3.5vw, 18px)',
+                        fontWeight: 'bold',
+                        color: textPrimary,
+                        marginBottom: '4px'
+                      }}>
+                        {formation.diplome}
+                      </h3>
+                      <p style={{
+                        fontSize: 'clamp(12px, 2.5vw, 14px)',
+                        color: colors.primary,
+                        fontWeight: '600',
+                        marginBottom: '4px'
+                      }}>
+                        {formation.ecole}
+                      </p>
+                    </div>
+                  </div>
+
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    transition={{ delay: i * 0.1 + 0.2 }}
+                    style={{
+                      background: formation.status === 'En cours'
+                        ? `linear-gradient(135deg, ${colors.secondary}, #ff8c42)`
+                        : `linear-gradient(135deg, ${colors.accent}, #00e5b8)`,
+                      color: colors.dark,
+                      padding: '8px 16px',
+                      borderRadius: '20px',
+                      fontSize: '12px',
+                      fontWeight: '700',
+                      whiteSpace: 'nowrap',
+                      boxShadow: `0 10px 25px ${colors.primary}40`
+                    }}
+                  >
+                    {formation.status}
+                  </motion.div>
                 </div>
-              </div>
 
-              <p style={{
-                fontSize: '14px',
-                color: theme === 'dark' ? '#cbd5e1' : '#64748b',
-                lineHeight: '1.6',
-                marginBottom: '12px'
-              }}>
-                {formation.description}
-              </p>
+                <p style={{
+                  fontSize: 'clamp(12px, 2.5vw, 14px)',
+                  color: textSecondary,
+                  lineHeight: '1.6',
+                  marginBottom: '12px'
+                }}>
+                  {formation.description}
+                </p>
 
-              <div style={{
-                display: 'flex',
-                justifyContent: 'space-between',
-                alignItems: 'center',
-                paddingTop: '12px',
-                borderTop: `1px solid ${colors.primary}20`
-              }}>
-                <span style={{
-                  fontSize: '13px',
-                  fontWeight: '600',
-                  color: colors.primary
+                <div style={{
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                  alignItems: 'center',
+                  paddingTop: '12px',
+                  borderTop: `1px solid ${colors.primary}20`,
+                  flexWrap: 'wrap',
+                  gap: '8px'
                 }}>
-                  📅 {formation.annee}
-                </span>
-                {/* <span style={{
-                  fontSize: '13px',
-                  color: theme === 'dark' ? '#cbd5e1' : '#64748b'
-                }}>
-                  {i === 0 ? 'Actuellement inscrit(e)' : 'Diplôme obtenu'}
-                </span> */}
-              </div>
-            </motion.div>
-          ))}
+                  <span style={{
+                    fontSize: 'clamp(12px, 2.5vw, 13px)',
+                    fontWeight: '600',
+                    color: colors.primary,
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '6px'
+                  }}>
+                    <Calendar size={16} /> {formation.annee}
+                  </span>
+                </div>
+              </motion.div>
+            );
+          })}
         </div>
       </div>
+
+      {/* Mobile Responsive */}
+      <style>{`
+        @media (max-width: 768px) {
+          [style*="flexWrap: 'wrap'"] {
+            flex-direction: column;
+          }
+        }
+      `}</style>
     </section>
   );
 }
@@ -1338,7 +1365,7 @@ function Experience() {
       endDate: 'Août 2024',
       description: 'J\'ai travaillé en tant que développeur web stagiaire au sein de la DREN. Mon projet principal a consisté à créer une application web complète d\'analyse d\'indicateurs d\'efficacité interne de la classe primaire sur la région Amoron\'i Mania.',
       skills: ['React.js', 'Node.js', 'Data Analysis'],
-      icon: <Laptop/>
+      icon: () => <Briefcase size={32} color={colors.primary} />
     },
     {
       id: 2,
@@ -1349,9 +1376,13 @@ function Experience() {
       endDate: 'Septembre 2025',
       description: 'Développement d\'une plateforme web complète de gestion d\'événements avec React.js, Nest.js et PostgreSQL. Conception et implémentation de l\'architecture three-tier avec API RESTful et communications temps réel via WebSocket. J\'ai eu la chance de collaborer avec un groupe de développeurs et désigné en tant que responsable du développement du module administrateur : tableau de bord avec statistiques, gestion des organisateurs et forfaits, système de notifications en temps réel, et messagerie intégrée avec Nodemailer. Déploiement en production sur serveur LWS.',
       skills: ['React.js', 'Nest.js', 'PostgreSQL', 'TypeScript', 'WebSocket', 'Socket.io', 'TypeORM', 'JWT', 'OAuth Google', 'Nodemailer', 'Git/Github', 'Figma', 'Agile SCRUM', 'RESTful API', 'LWS', 'Apache'],
-      icon: <Cloud/>
+      icon: () => <Cloud size={32} color={colors.primary} />
     }
   ];
+
+  const textPrimary = theme === 'dark' ? colors.light : colors.dark;
+  const textSecondary = theme === 'dark' ? '#cbd5e1' : '#475569';
+  const bgCard = theme === 'dark' ? colors.darkCard : colors.lightCard;
 
   return (
     <section
@@ -1371,7 +1402,7 @@ function Experience() {
             fontWeight: 'bold',
             marginBottom: '48px',
             textAlign: 'center',
-            color: theme === 'dark' ? colors.light : colors.dark
+            color: textPrimary
           }}
         >
           Mes <span style={{
@@ -1393,33 +1424,19 @@ function Experience() {
               initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ delay: index * 0.2, duration: 0.8 }}
+              whileHover={{ y: -8, boxShadow: `0 30px 60px ${colors.primary}30` }}
               style={{
                 borderRadius: '14px',
                 padding: 'clamp(24px, 5vw, 40px)',
-                background: theme === 'dark' ? colors.darkCard : colors.lightCard,
+                background: bgCard,
                 boxShadow: `0 20px 60px ${theme === 'dark' ? 'rgba(0, 0, 0, 0.3)' : 'rgba(0, 0, 0, 0.1)'}`,
                 border: `1px solid ${colors.primary}20`,
                 borderLeft: `4px solid ${colors.primary}`,
                 position: 'relative',
-                overflow: 'hidden'
+                overflow: 'hidden',
+                transition: 'all 0.3s'
               }}
             >
-              {/* Élément flottant en arrière-plan */}
-              {/* <motion.div
-                style={{
-                  position: 'absolute',
-                  top: '-50px',
-                  right: '-50px',
-                  width: '150px',
-                  height: '150px',
-                  background: `radial-gradient(circle, ${colors.primary}20 0%, transparent 70%)`,
-                  borderRadius: '50%',
-                  zIndex: 0
-                }}
-                animate={{ y: [0, 30, 0] }}
-                transition={{ duration: 4, repeat: Infinity }}
-              /> */}
-
               <div style={{ position: 'relative', zIndex: 1 }}>
                 <div style={{
                   display: 'flex',
@@ -1435,16 +1452,20 @@ function Experience() {
                     flexWrap: 'wrap'
                   }}>
                     <div style={{ flex: 1, minWidth: '200px' }}>
-                      <div style={{
-                        fontSize: 'clamp(28px, 5vw, 32px)',
-                        marginBottom: '8px'
-                      }}>
-                        {exp.icon}
-                      </div>
+                      <motion.div
+                        style={{
+                          marginBottom: '8px',
+                          display: 'flex'
+                        }}
+                        animate={{ rotate: [0, 10, 0] }}
+                        transition={{ duration: 4, repeat: Infinity }}
+                      >
+                        {exp.icon()}
+                      </motion.div>
                       <h3 style={{
                         fontSize: 'clamp(18px, 4vw, 24px)',
                         fontWeight: 'bold',
-                        color: theme === 'dark' ? colors.light : colors.dark,
+                        color: textPrimary,
                         marginBottom: '4px'
                       }}>
                         {exp.position}
@@ -1457,24 +1478,32 @@ function Experience() {
                         {exp.company}
                       </p>
                     </div>
-                    <div style={{
-                      background: `linear-gradient(135deg, ${colors.primary} 0%, ${colors.secondary} 100%)`,
-                      color: colors.dark,
-                      padding: '10px 16px',
-                      borderRadius: '8px',
-                      fontWeight: '700',
-                      fontSize: '11px',
-                      whiteSpace: 'nowrap',
-                      textAlign: 'center',
-                      minWidth: '120px'
-                    }}>
-                      <div>📅 {exp.startDate}</div>
+                    <motion.div
+                      initial={{ opacity: 0, scale: 0.8 }}
+                      whileInView={{ opacity: 1, scale: 1 }}
+                      transition={{ delay: index * 0.2 + 0.1 }}
+                      style={{
+                        background: `linear-gradient(135deg, ${colors.primary} 0%, ${colors.secondary} 100%)`,
+                        color: colors.dark,
+                        padding: '10px 16px',
+                        borderRadius: '8px',
+                        fontWeight: '700',
+                        fontSize: '11px',
+                        whiteSpace: 'nowrap',
+                        textAlign: 'center',
+                        minWidth: '120px',
+                        boxShadow: `0 10px 25px ${colors.primary}40`
+                      }}
+                    >
+                      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '4px' }}>
+                        <Calendar size={14} /> {exp.startDate}
+                      </div>
                       <div style={{ fontSize: '9px', marginTop: '4px' }}>→ {exp.endDate}</div>
-                    </div>
+                    </motion.div>
                   </div>
                 </div>
 
-                {/* Infos en tableau */}
+                {/* Location Info */}
                 <div style={{
                   marginBottom: '20px',
                   paddingBottom: '20px',
@@ -1490,12 +1519,15 @@ function Experience() {
                       color: colors.primary,
                       fontWeight: '600',
                       fontSize: '13px',
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '4px',
                       minWidth: '60px'
                     }}>
-                      Lieu
+                      <MapPin size={16} /> Lieu
                     </span>
                     <span style={{
-                      color: theme === 'dark' ? '#cbd5e1' : '#475569',
+                      color: textSecondary,
                       fontSize: 'clamp(13px, 3vw, 14px)',
                       flex: 1
                     }}>
@@ -1507,7 +1539,7 @@ function Experience() {
                 <p style={{
                   fontSize: 'clamp(13px, 3vw, 15px)',
                   lineHeight: '1.8',
-                  color: theme === 'dark' ? '#cbd5e1' : '#475569',
+                  color: textSecondary,
                   marginBottom: '20px'
                 }}>
                   {exp.description}
@@ -1521,9 +1553,12 @@ function Experience() {
                     fontSize: '13px',
                     fontWeight: '700',
                     marginBottom: '12px',
-                    color: theme === 'dark' ? colors.accent : colors.primary
+                    color: colors.primary,
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '8px'
                   }}>
-                    🛠️ Compétences utilisées :
+                    <Wrench size={16} /> Compétences utilisées :
                   </p>
                   <div style={{
                     display: 'flex',
@@ -1531,20 +1566,29 @@ function Experience() {
                     gap: '8px'
                   }}>
                     {exp.skills.map((skill, i) => (
-                      <span key={i} style={{
-                        fontSize: '11px',
-                        background: `linear-gradient(135deg, ${colors.primary}20, ${colors.secondary}20)`,
-                        color: colors.primary,
-                        padding: '5px 12px',
-                        borderRadius: '6px',
-                        border: `1px solid ${colors.primary}40`,
-                        fontWeight: '600',
-                        whiteSpace: 'nowrap',
-                        overflow: 'hidden',
-                        textOverflow: 'ellipsis'
-                      }}>
+                      <motion.span
+                        key={i}
+                        initial={{ opacity: 0, scale: 0.8 }}
+                        whileInView={{ opacity: 1, scale: 1 }}
+                        transition={{ delay: i * 0.05 }}
+                        whileHover={{ scale: 1.05 }}
+                        style={{
+                          fontSize: '11px',
+                          background: `linear-gradient(135deg, ${colors.primary}20, ${colors.secondary}20)`,
+                          color: colors.primary,
+                          padding: '5px 12px',
+                          borderRadius: '6px',
+                          border: `1px solid ${colors.primary}40`,
+                          fontWeight: '600',
+                          whiteSpace: 'nowrap',
+                          overflow: 'hidden',
+                          textOverflow: 'ellipsis',
+                          cursor: 'pointer',
+                          transition: 'all 0.2s'
+                        }}
+                      >
                         {skill}
-                      </span>
+                      </motion.span>
                     ))}
                   </div>
                 </div>
@@ -1553,6 +1597,15 @@ function Experience() {
           ))}
         </div>
       </div>
+
+      {/* Mobile Responsive */}
+      <style>{`
+        @media (max-width: 768px) {
+          [style*="flexWrap: 'wrap'"] {
+            flex-direction: column;
+          }
+        }
+      `}</style>
     </section>
   );
 }
@@ -1594,8 +1647,6 @@ function Contact() {
     setLoading(true);
 
     try {
-
-      // Utilisez Formspree ou EmailJS pour envoyer l'email
       const response = await fetch('https://formspree.io/f/mwpoylpl', {
         method: 'POST',
         headers: {
@@ -1621,11 +1672,16 @@ function Contact() {
     }
   };
 
+  const textPrimary = theme === 'dark' ? colors.light : colors.dark;
+  const textSecondary = theme === 'dark' ? '#cbd5e1' : '#64748b';
+  const bgSection = theme === 'dark' ? colors.darkCard : colors.lightCard;
+  const bgInput = theme === 'dark' ? colors.dark : colors.light;
+
   return (
     <section
       id="contact"
       style={{
-        background: theme === 'dark' ? colors.darkCard : colors.lightCard,
+        background: bgSection,
         padding: '80px 24px'
       }}
     >
@@ -1635,11 +1691,11 @@ function Contact() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           style={{
-            fontSize: '42px',
+            fontSize: 'clamp(32px, 6vw, 42px)',
             fontWeight: 'bold',
             marginBottom: '48px',
             textAlign: 'center',
-            color: theme === 'dark' ? colors.light : colors.dark
+            color: textPrimary
           }}
         >
           Me <span style={{
@@ -1656,17 +1712,17 @@ function Contact() {
           gap: '40px',
           marginBottom: '60px'
         }} className="contact-grid">
-          {/* Infos de contact à gauche */}
+          {/* Contact Info */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
           >
             <h3 style={{
-              fontSize: '24px',
+              fontSize: 'clamp(20px, 4vw, 24px)',
               fontWeight: 'bold',
               marginBottom: '32px',
-              color: theme === 'dark' ? colors.light : colors.dark
+              color: textPrimary
             }}>
               Informations de Contact
             </h3>
@@ -1681,10 +1737,11 @@ function Contact() {
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ delay: i * 0.1, duration: 0.8 }}
+                    whileHover={{ x: 8 }}
                     style={{
                       padding: '20px',
                       borderRadius: '12px',
-                      background: theme === 'dark' ? colors.dark : colors.light,
+                      background: bgInput,
                       textDecoration: 'none',
                       border: `1px solid ${colors.primary}20`,
                       transition: 'all 0.3s',
@@ -1695,21 +1752,25 @@ function Contact() {
                     }}
                     onMouseEnter={(e) => {
                       e.currentTarget.style.borderColor = colors.primary;
-                      e.currentTarget.style.background = theme === 'dark' ? colors.darkHover : colors.lightHover;
                       e.currentTarget.style.boxShadow = `0 10px 30px ${colors.primary}30`;
                     }}
                     onMouseLeave={(e) => {
                       e.currentTarget.style.borderColor = `${colors.primary}20`;
-                      e.currentTarget.style.background = theme === 'dark' ? colors.dark : colors.light;
                       e.currentTarget.style.boxShadow = 'none';
                     }}
                   >
-                    <Icon style={{ color: colors.primary, flexShrink: 0 }} size={28} />
+                    <motion.div
+                      animate={{ rotate: [0, 10, 0] }}
+                      transition={{ duration: 4, repeat: Infinity }}
+                      style={{ flexShrink: 0 }}
+                    >
+                      <Icon style={{ color: colors.primary }} size={28} />
+                    </motion.div>
                     <div>
-                      <p style={{ fontSize: '14px', fontWeight: '700', color: theme === 'dark' ? colors.light : colors.dark, marginBottom: '4px' }}>
+                      <p style={{ fontSize: '14px', fontWeight: '700', color: textPrimary, marginBottom: '4px' }}>
                         {info.label}
                       </p>
-                      <p style={{ fontSize: '14px', color: theme === 'dark' ? '#cbd5e1' : '#64748b' }}>
+                      <p style={{ fontSize: '14px', color: textSecondary }}>
                         {info.value}
                       </p>
                     </div>
@@ -1718,13 +1779,13 @@ function Contact() {
               })}
             </div>
 
-            {/* Réseaux sociaux */}
+            {/* Social Links */}
             <div style={{ marginTop: '40px' }}>
               <h4 style={{
                 fontSize: '16px',
                 fontWeight: 'bold',
                 marginBottom: '16px',
-                color: theme === 'dark' ? colors.light : colors.dark
+                color: textPrimary
               }}>
                 Me suivre sur les réseaux
               </h4>
@@ -1737,7 +1798,7 @@ function Contact() {
                       href={social.link}
                       target="_blank"
                       rel="noopener noreferrer"
-                      whileHover={{ scale: 1.1 }}
+                      whileHover={{ scale: 1.1, y: -4 }}
                       whileTap={{ scale: 0.95 }}
                       title={social.label}
                       style={{
@@ -1751,13 +1812,8 @@ function Contact() {
                         gap: '8px',
                         fontWeight: '600',
                         fontSize: '13px',
-                        transition: 'all 0.3s'
-                      }}
-                      onMouseEnter={(e) => {
-                        e.currentTarget.style.boxShadow = `0 10px 30px ${colors.primary}40`;
-                      }}
-                      onMouseLeave={(e) => {
-                        e.currentTarget.style.boxShadow = 'none';
+                        transition: 'all 0.3s',
+                        boxShadow: `0 10px 30px ${colors.primary}30`
                       }}
                     >
                       <Icon size={18} />
@@ -1769,17 +1825,17 @@ function Contact() {
             </div>
           </motion.div>
 
-          {/* Formulaire à droite */}
+          {/* Form */}
           <motion.div
             initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
           >
             <h3 style={{
-              fontSize: '24px',
+              fontSize: 'clamp(20px, 4vw, 24px)',
               fontWeight: 'bold',
               marginBottom: '32px',
-              color: theme === 'dark' ? colors.light : colors.dark
+              color: textPrimary
             }}>
               Envoyez-moi un Message
             </h3>
@@ -1795,10 +1851,13 @@ function Contact() {
                   border: `1px solid ${colors.accent}`,
                   color: colors.accent,
                   marginBottom: '20px',
-                  fontWeight: '600'
+                  fontWeight: '600',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '8px'
                 }}
               >
-                ✓ Message envoyé avec succès ! 🎉
+                <CheckCircle size={20} /> Message envoyé avec succès ! 🎉
               </motion.div>
             )}
 
@@ -1807,12 +1866,12 @@ function Contact() {
               flexDirection: 'column',
               gap: '16px'
             }}>
-              {/* Nom */}
+              {/* Name */}
               <div>
                 <label style={{
                   fontSize: '14px',
                   fontWeight: '600',
-                  color: theme === 'dark' ? colors.light : colors.dark,
+                  color: textPrimary,
                   marginBottom: '8px',
                   display: 'block'
                 }}>
@@ -1830,8 +1889,8 @@ function Contact() {
                     padding: '12px 16px',
                     borderRadius: '8px',
                     border: `1px solid ${colors.primary}30`,
-                    background: theme === 'dark' ? colors.darkCard : colors.light,
-                    color: theme === 'dark' ? colors.light : colors.dark,
+                    background: bgInput,
+                    color: textPrimary,
                     fontSize: '14px',
                     fontFamily: 'inherit',
                     transition: 'all 0.3s',
@@ -1853,7 +1912,7 @@ function Contact() {
                 <label style={{
                   fontSize: '14px',
                   fontWeight: '600',
-                  color: theme === 'dark' ? colors.light : colors.dark,
+                  color: textPrimary,
                   marginBottom: '8px',
                   display: 'block'
                 }}>
@@ -1871,8 +1930,8 @@ function Contact() {
                     padding: '12px 16px',
                     borderRadius: '8px',
                     border: `1px solid ${colors.primary}30`,
-                    background: theme === 'dark' ? colors.darkCard : colors.light,
-                    color: theme === 'dark' ? colors.light : colors.dark,
+                    background: bgInput,
+                    color: textPrimary,
                     fontSize: '14px',
                     fontFamily: 'inherit',
                     transition: 'all 0.3s',
@@ -1889,12 +1948,12 @@ function Contact() {
                 />
               </div>
 
-              {/* Sujet */}
+              {/* Subject */}
               <div>
                 <label style={{
                   fontSize: '14px',
                   fontWeight: '600',
-                  color: theme === 'dark' ? colors.light : colors.dark,
+                  color: textPrimary,
                   marginBottom: '8px',
                   display: 'block'
                 }}>
@@ -1912,8 +1971,8 @@ function Contact() {
                     padding: '12px 16px',
                     borderRadius: '8px',
                     border: `1px solid ${colors.primary}30`,
-                    background: theme === 'dark' ? colors.darkCard : colors.light,
-                    color: theme === 'dark' ? colors.light : colors.dark,
+                    background: bgInput,
+                    color: textPrimary,
                     fontSize: '14px',
                     fontFamily: 'inherit',
                     transition: 'all 0.3s',
@@ -1935,7 +1994,7 @@ function Contact() {
                 <label style={{
                   fontSize: '14px',
                   fontWeight: '600',
-                  color: theme === 'dark' ? colors.light : colors.dark,
+                  color: textPrimary,
                   marginBottom: '8px',
                   display: 'block'
                 }}>
@@ -1953,8 +2012,8 @@ function Contact() {
                     padding: '12px 16px',
                     borderRadius: '8px',
                     border: `1px solid ${colors.primary}30`,
-                    background: theme === 'dark' ? colors.darkCard : colors.light,
-                    color: theme === 'dark' ? colors.light : colors.dark,
+                    background: bgInput,
+                    color: textPrimary,
                     fontSize: '14px',
                     fontFamily: 'inherit',
                     transition: 'all 0.3s',
@@ -1973,7 +2032,7 @@ function Contact() {
                 />
               </div>
 
-              {/* Bouton Envoyer */}
+              {/* Submit Button */}
               <motion.button
                 type="submit"
                 disabled={loading}
@@ -1990,23 +2049,30 @@ function Contact() {
                   cursor: loading ? 'not-allowed' : 'pointer',
                   transition: 'all 0.3s',
                   opacity: loading ? 0.7 : 1,
-                  boxShadow: `0 10px 30px ${colors.primary}30`
-                }}
-                onMouseEnter={(e) => {
-                  if (!loading) {
-                    e.currentTarget.style.boxShadow = `0 15px 40px ${colors.primary}50`;
-                  }
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.boxShadow = `0 10px 30px ${colors.primary}30`;
+                  boxShadow: `0 10px 30px ${colors.primary}30`,
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  gap: '8px'
                 }}
               >
-                {loading ? '⏳ Envoi en cours...' : '✉️ Envoyer le message'}
+                {!loading && <Send size={18} />}
+                {loading ? '⏳ Envoi en cours...' : 'Envoyer le message'}
               </motion.button>
             </form>
           </motion.div>
         </div>
       </div>
+
+      {/* Mobile Responsive */}
+      <style>{`
+        @media (max-width: 768px) {
+          .contact-grid {
+            grid-template-columns: 1fr !important;
+            gap: 32px !important;
+          }
+        }
+      `}</style>
     </section>
   );
 }
