@@ -1,14 +1,20 @@
 pipeline {
     agent any
 
+    environment {
+        IMAGE_NAME = "portfolio-react"
+        CONTAINER_NAME = "portfolio-container"
+        DOCKERFILE_PATH = "./Dockerfile"
+    }
+
     stages {
-        stage('Cloner le projet') {
+        stage('Checkout') {
             steps {
-                git 'https://github.com/Sylvano96/MonPortfolio.git'
+                git branch: 'main', url: 'https://github.com/Sylvano96/MonPortfolio.git'
             }
         }
 
-        stage('Installer les dépendances') {
+        stage('Install Dependencies') {
             steps {
                 sh 'npm install'
             }
@@ -20,19 +26,20 @@ pipeline {
             }
         }
 
-        stage('Build Docker image') {
+        stage('Build Docker Image') {
             steps {
-                sh 'docker build -t portfolio-react .'
+                sh "docker build -t $IMAGE_NAME -f $DOCKERFILE_PATH ."
             }
         }
 
-        stage('Déployer') {
+        stage('Deploy') {
             steps {
-                sh '''
-                    docker stop portfolio || true
-                    docker rm portfolio || true
-                    docker run -d --name portfolio -p 80:80 portfolio-react
-                '''
+                script {
+                    // Supprimer le container s'il existe déjà
+                    sh "docker rm -f $CONTAINER_NAME || true"
+                    // Lancer le container
+                    sh "docker run -d --name $CONTAINER_NAME -p 80:80 $IMAGE_NAME"
+                }
             }
         }
     }
