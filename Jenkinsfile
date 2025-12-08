@@ -14,18 +14,6 @@ pipeline {
             }
         }
 
-        stage('Install Dependencies') {
-            steps {
-                sh 'npm install'
-            }
-        }
-
-        stage('Build React') {
-            steps {
-                sh 'npm run build'
-            }
-        }
-
         stage('Build Docker Image') {
             steps {
                 sh "docker build -t $IMAGE_NAME -f $DOCKERFILE_PATH ."
@@ -35,7 +23,7 @@ pipeline {
         stage('Deploy') {
             steps {
                 script {
-                    // Supprimer le container s'il existe déjà
+                    // Supprimer le container s'il existe
                     sh "docker rm -f $CONTAINER_NAME || true"
                     // Lancer le container
                     sh "docker run -d --name $CONTAINER_NAME -p 80:80 $IMAGE_NAME"
