@@ -576,7 +576,7 @@ function Hero() {
             transition={{ duration: 4, repeat: Infinity }}
           >
             <motion.img
-              src="/assets/IMG_20250513_192957.jpg"
+              src="/assets/Polish_20251108_133226388.jpg"
               alt="Elias Sylvano"
               style={{
                 width: '100%',
@@ -703,7 +703,7 @@ function About() {
               transition={{ duration: 4, repeat: Infinity }}
             >
               <motion.img
-                src="/assets/IMG_20250513_192957.jpg"
+                src="/assets/Polish_20251108_133226388.jpg"
                 alt="Elias Sylvano"
                 style={{
                   width: '100%',
