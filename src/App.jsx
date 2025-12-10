@@ -1207,6 +1207,12 @@ function Projects() {
       link: 'https://github.com/Sylvano96/EvoBlog'
     },
     {
+      name: 'Note Ai',
+      desc: 'Application mobile de prise de notes avec assistant IA.',
+      tech: ['Flutter', 'Flask', 'API Gemini'],
+      link: 'https://github.com/Sylvano96/mobile-flutter'
+    },
+    {
       name: 'SpeedService',
       desc: 'Site web qui propose des services numériques avec chat en temps réel et authentification.',
       tech: ['Laravel', 'JavaScript', 'MySQL'],
@@ -1217,12 +1223,6 @@ function Projects() {
       desc: 'Application web complète pour gérer les tâches quotidiennes.',
       tech: ['React', 'Laravel', 'MySQL'],
       link: 'https://github.com/Sylvano96/gestion-tache'
-    },
-    {
-      name: 'Note Ai',
-      desc: 'Application mobile de prise de notes avec assistant IA.',
-      tech: ['Flutter', 'Flask', 'API Gemini'],
-      link: 'https://github.com/Sylvano96/mobile-flutter'
     }
   ];
 
