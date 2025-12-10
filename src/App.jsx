@@ -67,7 +67,7 @@ function Header() {
         justifyContent: 'space-between',
         alignItems: 'center'
       }}>
-        <motion.div style={{
+        <motion.a style={{
           fontSize: '24px',
           fontWeight: 'bold',
           background: `linear-gradient(135deg, ${colors.primary} 0%, ${colors.secondary} 100%)`,
@@ -77,13 +77,15 @@ function Header() {
           display: 'flex',
           alignItems: 'center',
           gap: '8px',
-          cursor: 'pointer'
+          cursor: 'pointer',
+          textDecoration:'none'
         }}
           whileHover={{ scale: 1.05 }}
+          href='/'
         >
           <Zap size={28} style={{ color: colors.primary }} />
           VANÔ
-        </motion.div>
+        </motion.a>
 
         {/* Desktop Menu */}
         <div style={{
