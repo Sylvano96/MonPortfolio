@@ -777,7 +777,7 @@ function About() {
             marginBottom: '24px',
             color: theme === 'dark' ? '#cbd5e1' : '#475569'
           }}>
-            Chaque projet est une opportunité d'apprendre quelque chose de nouveau et de repousser mes limites techniques. Je crois fermement que la collaboration, l'automatisation et l'apprentissage continu sont les clés du succès dans ce domaine en constante évolution.
+            Chaque projet est une opportunité d'apprendre quelque chose de nouveau et de repousser les limites techniques. Je crois fermement que la collaboration, l'automatisation et l'apprentissage continu sont les clés du succès dans ce domaine en constante évolution.
           </p>
 
           {/* Section Valeurs */}
