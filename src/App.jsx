@@ -81,7 +81,7 @@ function Header() {
           textDecoration:'none'
         }}
           whileHover={{ scale: 1.05 }}
-          href='/'
+          href='#'
         >
           <Zap size={28} style={{ color: colors.primary }} />
           VANÔ
